@@ -44,6 +44,16 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- Dependencias agregadas -->
+		<dependency>
+			<groupId>com.magadiflo.commons.alumnos</groupId>
+			<artifactId>fs-microservicio-commons-alumnos</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.magadiflo.commons.examenes</groupId>
+			<artifactId>fs-microservicio-commons-examenes</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
