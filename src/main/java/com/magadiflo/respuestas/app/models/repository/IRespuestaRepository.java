@@ -10,4 +10,10 @@ public interface IRespuestaRepository extends CrudRepository<Respuesta, Long> {
 	@Query("SELECT r FROM Respuesta AS r JOIN FETCH r.alumno AS a JOIN FETCH r.pregunta AS p JOIN FETCH p.examen AS e WHERE a.id = ?1 AND e.id = ?2")
 	Iterable<Respuesta> findRespuestasByAlumnoByExamen(Long alumnoId, Long examenId);
 
+	// Aquí el FETCH no va, ese FETCH solo lo usamos cuando queremos retornar el
+	// objeto con los demás objetos relacionados. Por otro lado, con el Group by
+	// para que no se repitan los ids
+	@Query("SELECT e.id FROM Respuesta AS r JOIN r.alumno AS a JOIN r.pregunta AS p JOIN p.examen AS e WHERE a.id = ?1 GROUP BY e.id")
+	Iterable<Long> findExamenesIdsConRespuestasPorAlumno(Long alumnoId);
+
 }
