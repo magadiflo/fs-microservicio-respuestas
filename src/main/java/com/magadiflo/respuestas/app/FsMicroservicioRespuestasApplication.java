@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
-@EntityScan(value = { "com.magadiflo.respuestas.app.models.entity", "com.magadiflo.commons.alumnos.models.entity", "com.magadiflo.commons.examenes.models.entity" })
+@EntityScan(value = { "com.magadiflo.respuestas.app.models.entity", "com.magadiflo.commons.examenes.models.entity" })
 @SpringBootApplication
 public class FsMicroservicioRespuestasApplication {
 
