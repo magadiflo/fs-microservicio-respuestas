@@ -1,13 +1,14 @@
 package com.magadiflo.respuestas.app.models.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.magadiflo.commons.alumnos.models.entity.Alumno;
 import com.magadiflo.commons.examenes.models.entity.Pregunta;
@@ -22,7 +23,11 @@ public class Respuesta {
 
 	private String texto;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@Column(name = "alumno_id")
+	private Long alumnoId;
+
+	// @ManyToOne(fetch = FetchType.LAZY)
+	@Transient // No será mapeado a la tabla de la BD
 	private Alumno alumno;
 
 	@OneToOne(fetch = FetchType.LAZY)
@@ -60,6 +65,14 @@ public class Respuesta {
 		this.pregunta = pregunta;
 	}
 
+	public Long getAlumnoId() {
+		return alumnoId;
+	}
+
+	public void setAlumnoId(Long alumnoId) {
+		this.alumnoId = alumnoId;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -67,6 +80,8 @@ public class Respuesta {
 		builder.append(id);
 		builder.append(", texto=");
 		builder.append(texto);
+		builder.append(", alumnoId=");
+		builder.append(alumnoId);
 		builder.append("]");
 		return builder.toString();
 	}
