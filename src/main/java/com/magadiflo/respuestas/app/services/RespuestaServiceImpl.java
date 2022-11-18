@@ -11,6 +11,10 @@ import com.magadiflo.respuestas.app.clients.IExamenFeignClient;
 import com.magadiflo.respuestas.app.models.entity.Respuesta;
 import com.magadiflo.respuestas.app.models.repository.IRespuestaRepository;
 
+/**
+ * El @Transactional no va, no es requisito en MongoDB
+ */
+
 @Service
 public class RespuestaServiceImpl implements IRespuestaService {
 
@@ -50,6 +54,11 @@ public class RespuestaServiceImpl implements IRespuestaService {
 	@Override
 	public Iterable<Long> findExamenesIdsConRespuestasPorAlumno(Long alumnoId) {
 		return null;
+	}
+
+	@Override
+	public Iterable<Respuesta> findByAlumnoId(Long alumnoId) {
+		return this.respuestaRepository.findByAlumnoId(alumnoId);
 	}
 
 }
