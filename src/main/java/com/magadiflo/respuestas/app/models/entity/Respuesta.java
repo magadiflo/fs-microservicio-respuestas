@@ -1,7 +1,7 @@
 package com.magadiflo.respuestas.app.models.entity;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
+//import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.magadiflo.commons.alumnos.models.entity.Alumno;
@@ -20,10 +20,10 @@ public class Respuesta {
 
 	private Long preguntaId;
 
-	@Transient
+	//@Transient
 	private Alumno alumno;
 
-	@Transient
+	//@Transient
 	private Pregunta pregunta;
 
 	public String getId() {
