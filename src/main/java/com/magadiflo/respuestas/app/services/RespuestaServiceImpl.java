@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.magadiflo.commons.examenes.models.entity.Examen;
 import com.magadiflo.commons.examenes.models.entity.Pregunta;
@@ -24,13 +23,11 @@ public class RespuestaServiceImpl implements IRespuestaService {
 	}
 
 	@Override
-	@Transactional
 	public Iterable<Respuesta> saveAll(Iterable<Respuesta> respuestas) {
 		return this.respuestaRepository.saveAll(respuestas);
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public Iterable<Respuesta> findRespuestasByAlumnoByExamen(Long alumnoId, Long examenId) {
 		Examen examen = this.examenFeignClient.obtenerExamenPorId(examenId);
 		List<Pregunta> preguntas = examen.getPreguntas();
@@ -51,7 +48,6 @@ public class RespuestaServiceImpl implements IRespuestaService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public Iterable<Long> findExamenesIdsConRespuestasPorAlumno(Long alumnoId) {
 		return null;
 	}
