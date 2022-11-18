@@ -1,43 +1,36 @@
 package com.magadiflo.respuestas.app.models.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.magadiflo.commons.alumnos.models.entity.Alumno;
 import com.magadiflo.commons.examenes.models.entity.Pregunta;
 
-@Entity
-@Table(name = "respuestas")
+// collection es como si fueran nuestras Tablas en una BD relacional
+@Document(collection = "respuestas")
 public class Respuesta {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 
 	private String texto;
 
-	@Column(name = "alumno_id")
 	private Long alumnoId;
 
-	// @ManyToOne(fetch = FetchType.LAZY)
-	@Transient // No será mapeado a la tabla de la BD
+	private Long preguntaId;
+
+	@Transient
 	private Alumno alumno;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@Transient
 	private Pregunta pregunta;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -71,6 +64,14 @@ public class Respuesta {
 
 	public void setAlumnoId(Long alumnoId) {
 		this.alumnoId = alumnoId;
+	}
+
+	public Long getPreguntaId() {
+		return preguntaId;
+	}
+
+	public void setPreguntaId(Long preguntaId) {
+		this.preguntaId = preguntaId;
 	}
 
 	@Override
