@@ -16,6 +16,6 @@ public interface IExamenFeignClient {
 	Examen obtenerExamenPorId(@PathVariable Long id);
 
 	@GetMapping(path = "/respondidos-por-preguntas")
-	List<Examen> obtenerExamenesIdsPorPreguntasIdRespondidas(@RequestParam List<Long> preguntaIds);
+	List<Long> obtenerExamenesIdsPorPreguntasIdRespondidas(@RequestParam List<Long> preguntaIds);
 
 }
