@@ -1,8 +1,13 @@
 package com.magadiflo.respuestas.app.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.magadiflo.commons.examenes.models.entity.Examen;
+import com.magadiflo.commons.examenes.models.entity.Pregunta;
 import com.magadiflo.respuestas.app.clients.IExamenFeignClient;
 import com.magadiflo.respuestas.app.models.entity.Respuesta;
 import com.magadiflo.respuestas.app.models.repository.IRespuestaRepository;
@@ -27,7 +32,22 @@ public class RespuestaServiceImpl implements IRespuestaService {
 	@Override
 	@Transactional(readOnly = true)
 	public Iterable<Respuesta> findRespuestasByAlumnoByExamen(Long alumnoId, Long examenId) {
-		return null;
+		Examen examen = this.examenFeignClient.obtenerExamenPorId(examenId);
+		List<Pregunta> preguntas = examen.getPreguntas();
+		List<Long> preguntasIds = preguntas.stream().map(p -> p.getId()).collect(Collectors.toList());
+		List<Respuesta> respuestas = (List<Respuesta>) this.respuestaRepository
+				.findRespuestasByAlumnoByPreguntaIds(alumnoId, preguntasIds);
+
+		respuestas = respuestas.stream().map(r -> {
+			preguntas.forEach(p -> {
+				if (p.getId() == r.getPreguntaId()) {
+					r.setPregunta(p);
+				}
+			});
+			return r;
+		}).collect(Collectors.toList());
+
+		return respuestas;
 	}
 
 	@Override
