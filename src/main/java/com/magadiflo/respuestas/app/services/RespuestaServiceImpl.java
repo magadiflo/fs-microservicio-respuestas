@@ -24,13 +24,13 @@ public class RespuestaServiceImpl implements IRespuestaService {
 	@Override
 	@Transactional(readOnly = true)
 	public Iterable<Respuesta> findRespuestasByAlumnoByExamen(Long alumnoId, Long examenId) {
-		return this.respuestaRepository.findRespuestasByAlumnoByExamen(alumnoId, examenId);
+		return null;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Iterable<Long> findExamenesIdsConRespuestasPorAlumno(Long alumnoId) {
-		return this.respuestaRepository.findExamenesIdsConRespuestasPorAlumno(alumnoId);
+		return null;
 	}
 
 }
