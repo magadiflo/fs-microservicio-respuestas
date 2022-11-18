@@ -1,6 +1,6 @@
 package com.magadiflo.respuestas.app.services;
 
-import java.util.Collections;
+//import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 //import com.magadiflo.commons.examenes.models.entity.Examen;
 //import com.magadiflo.commons.examenes.models.entity.Pregunta;
-import com.magadiflo.respuestas.app.clients.IExamenFeignClient;
+//import com.magadiflo.respuestas.app.clients.IExamenFeignClient;
 import com.magadiflo.respuestas.app.models.entity.Respuesta;
 import com.magadiflo.respuestas.app.models.repository.IRespuestaRepository;
 
@@ -20,11 +20,11 @@ import com.magadiflo.respuestas.app.models.repository.IRespuestaRepository;
 public class RespuestaServiceImpl implements IRespuestaService {
 
 	private final IRespuestaRepository respuestaRepository;
-	private final IExamenFeignClient examenFeignClient;
+	//private final IExamenFeignClient examenFeignClient;
 
-	public RespuestaServiceImpl(IRespuestaRepository respuestaRepository, IExamenFeignClient examenFeignClient) {
+	public RespuestaServiceImpl(IRespuestaRepository respuestaRepository) { //IExamenFeignClient examenFeignClient
 		this.respuestaRepository = respuestaRepository;
-		this.examenFeignClient = examenFeignClient;
+		//this.examenFeignClient = examenFeignClient;
 	}
 
 	@Override
